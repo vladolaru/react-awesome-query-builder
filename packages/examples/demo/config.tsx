@@ -411,6 +411,100 @@ export default (skin: string) => {
           },
         },
       },
+      business: {
+      label: "Business",
+      tooltip: "Group of fields",
+      type: "!struct",
+      subfields: {
+        name: {
+          label: "Name",
+          type: "text",
+          mainWidgetProps: {
+            valueLabel: "Name",
+            valuePlaceholder: "Enter business name",
+          },
+        },
+        url: {
+          label: "URL", //only for menu's toggler
+          type: "text",
+          mainWidgetProps: {
+            valueLabel: "URL",
+            valuePlaceholder: "Enter business URL",
+          },
+        },
+        country: {
+          label: "Country",
+          type: "select",
+          valueSources: ["value"],
+          fieldSettings: {
+            showSearch: true,
+            listValues: [
+              { value: "US", title: "USA" },
+              { value: "CA", title: "Canada" },
+              { value: "UK", title: "United Kingdom" },
+            ],
+          },
+        },
+        type: {
+          label: "Type",
+          type: "select",
+          valueSources: ["value"],
+          fieldSettings: {
+            showSearch: true,
+            listValues: [
+              { value: "individual", title: "Individual" },
+              { value: "company", title: "Company" },
+              { value: "non_profit", title: "Non-profit" },
+            ],
+          },
+        },
+        mcc: {
+          label: "MCC",
+          type: "select",
+          valueSources: ["value"],
+          fieldSettings: {
+            showSearch: true,
+            listValues: [
+              { value: "software", title: "Software" },
+              { value: "clothing", title: "Clothing" },
+              { value: "industrial_supplies", title: "Industrial Supplies" },
+              { value: "digital_goods", title: "Digital Goods" },
+            ],
+          },
+        },
+        annual_revenue: {
+          label: "Annual Revenue",
+          type: "select",
+          valueSources: ["value"],
+          fieldSettings: {
+            showSearch: true,
+            listValues: [
+              { value: "less_than_250k", title: "Less than $250k" },
+              { value: "250k_1m", title: "$250k to $1m" },
+              { value: "1m_20m", title: "$1m to $20m" },
+              { value: "20m_100m", title: "$20m to $100m" },
+              { value: "more_than_100m", title: "More than $100m" },
+              { value: "not_sure", title: "Not sure" },
+            ],
+          },
+        },
+        go_live_timeframe: {
+          label: "Go live",
+          type: "select",
+          valueSources: ["value"],
+          fieldSettings: {
+            showSearch: true,
+            listValues: [
+              { value: "within_5days", title: "Within 5 days" },
+              { value: "within_1month", title: "Within 1 month" },
+              { value: "1_3months", title: "1-3 months" },
+              { value: "3_6months", title: "3-6 months" },
+              { value: "more_than_6months", title: "More than 6 months" },
+              { value: "just_testing", title: "Just testing" },
+            ],
+          },
+        },
+      },
     },
     user: {
       label: "User",
