@@ -1,16 +1,25 @@
 import React, { Component } from "react";
 import merge from "lodash/merge";
 import {
-  BasicFuncs, Utils,
+  BasicFuncs,
+  Utils,
   // types:
-  Operators, Widgets, Fields, Config, Types, Conjunctions, LocaleSettings, OperatorProximity, Funcs,
+  Operators,
+  Widgets,
+  Fields,
+  Config,
+  Types,
+  Conjunctions,
+  LocaleSettings,
+  OperatorProximity,
+  Funcs,
   //DateTimeFieldSettings,
 } from "@react-awesome-query-builder/core";
 import {
   BasicConfig,
   // types:
   Settings,
-  DateTimeFieldSettings
+  DateTimeFieldSettings,
 } from "@react-awesome-query-builder/ui";
 import moment from "moment";
 import ru_RU from "antd/es/locale/ru_RU";
@@ -22,12 +31,8 @@ import { MuiConfig } from "@react-awesome-query-builder/mui";
 import { MaterialConfig } from "@react-awesome-query-builder/material";
 import { BootstrapConfig } from "@react-awesome-query-builder/bootstrap";
 import { FluentUIConfig } from "@react-awesome-query-builder/fluent";
-const {
-  FieldSelect,
-  FieldDropdown,
-  FieldCascader,
-  FieldTreeSelect,
-} = AntdWidgets;
+const { FieldSelect, FieldDropdown, FieldCascader, FieldTreeSelect } =
+  AntdWidgets;
 const { simulateAsyncFetch } = Utils.Autocomplete;
 
 const skinToConfig: Record<string, Config> = {
@@ -36,7 +41,7 @@ const skinToConfig: Record<string, Config> = {
   material: MaterialConfig,
   mui: MuiConfig,
   bootstrap: BootstrapConfig,
-  fluent: FluentUIConfig
+  fluent: FluentUIConfig,
 };
 
 export default (skin: string) => {
@@ -81,10 +86,10 @@ export default (skin: string) => {
       minProximity: 2,
       maxProximity: 10,
       defaults: {
-        proximity: 2
+        proximity: 2,
       },
-      customProps: {}
-    }
+      customProps: {},
+    },
   };
 
   const operators: Operators = {
@@ -93,33 +98,26 @@ export default (skin: string) => {
     proximity,
     between: {
       ...InitialConfig.operators.between,
-      valueLabels: [
-        "Value from",
-        "Value to"
-      ],
-      textSeparators: [
-        "from",
-        "to"
-      ],
+      valueLabels: ["Value from", "Value to"],
+      textSeparators: ["from", "to"],
     },
   };
-
 
   const widgets: Widgets = {
     ...InitialConfig.widgets,
     // examples of  overriding
     text: {
-      ...InitialConfig.widgets.text
+      ...InitialConfig.widgets.text,
     },
     textarea: {
       ...InitialConfig.widgets.textarea,
-      maxRows: 3
+      maxRows: 3,
     },
     slider: {
-      ...InitialConfig.widgets.slider
+      ...InitialConfig.widgets.slider,
     },
     rangeslider: {
-      ...InitialConfig.widgets.rangeslider
+      ...InitialConfig.widgets.rangeslider,
     },
     date: {
       ...InitialConfig.widgets.date,
@@ -140,8 +138,8 @@ export default (skin: string) => {
     func: {
       ...InitialConfig.widgets.func,
       customProps: {
-        showSearch: true
-      }
+        showSearch: true,
+      },
     },
     select: {
       ...InitialConfig.widgets.select,
@@ -152,18 +150,17 @@ export default (skin: string) => {
         //showCheckboxes: false,
         width: "200px",
         input: {
-          width: "100px"
-        }
-      }
+          width: "100px",
+        },
+      },
     },
     treeselect: {
       ...InitialConfig.widgets.treeselect,
       customProps: {
-        showSearch: true
-      }
+        showSearch: true,
+      },
     },
   };
-
 
   const types: Types = {
     ...InitialConfig.types,
@@ -177,28 +174,27 @@ export default (skin: string) => {
         boolean: {
           widgetProps: {
             hideOperator: true,
-            operatorInlineLabel: "is"
+            operatorInlineLabel: "is",
           },
           opProps: {
             equal: {
-              label: "is"
+              label: "is",
             },
             not_equal: {
-              label: "is not"
-            }
-          }
+              label: "is not",
+            },
+          },
         },
       },
     }),
   };
-
 
   const localeSettings: LocaleSettings = {
     locale: {
       moment: "ru",
       antd: ru_RU,
       material: ruRU,
-      mui: muiRuRU
+      mui: muiRuRU,
     },
     valueLabel: "Value",
     valuePlaceholder: "Value",
@@ -221,13 +217,13 @@ export default (skin: string) => {
       title: "Are you sure delete this rule?",
       okText: "Yes",
       okType: "danger",
-      cancelText: "Cancel"
+      cancelText: "Cancel",
     },
     removeGroupConfirmOptions: {
       title: "Are you sure delete this group?",
       okText: "Yes",
       okType: "danger",
-      cancelText: "Cancel"
+      cancelText: "Cancel",
     },
   };
 
@@ -242,7 +238,7 @@ export default (skin: string) => {
 
     valueSourcesInfo: {
       value: {
-        label: "Value"
+        label: "Value",
       },
       field: {
         label: "Field",
@@ -251,7 +247,7 @@ export default (skin: string) => {
       func: {
         label: "Function",
         widget: "func",
-      }
+      },
     },
     // canReorder: true,
     // canRegroup: true,
@@ -263,9 +259,9 @@ export default (skin: string) => {
     shouldCreateEmptyGroup: false,
     showErrorMessage: true,
     customFieldSelectProps: {
-      showSearch: true
+      showSearch: true,
     },
-    // renderField: (props) => <FieldCascader {...props} />,
+    renderField: (props) => <FieldCascader {...props} />,
     // renderOperator: (props) => <FieldDropdown {...props} />,
     // renderFunc: (props) => <FieldSelect {...props} />,
     // maxNumberOfRules: 10 // number of rules can be added to the query builder
@@ -274,6 +270,148 @@ export default (skin: string) => {
   //////////////////////////////////////////////////////////////////////
 
   const fields: Fields = {
+    merchant: {
+      label: "Merchant",
+      tooltip: "Group of fields",
+      type: "!struct",
+      subfields: {
+        firstName: {
+          label: "First name",
+          type: "text",
+          mainWidgetProps: {
+            valueLabel: "First Name",
+            valuePlaceholder: "Enter first name",
+          },
+        },
+        lastName: {
+          label: "Last name",
+          type: "text",
+          mainWidgetProps: {
+            valueLabel: "Last Name",
+            valuePlaceholder: "Enter last name",
+          },
+        },
+        fullName: {
+          label: "Full name",
+          type: "text",
+          mainWidgetProps: {
+            valueLabel: "Full Name",
+            valuePlaceholder: "Enter full name",
+          },
+        },
+        email: {
+          label: "Email",
+          type: "text",
+          mainWidgetProps: {
+            valueLabel: "Email",
+            valuePlaceholder: "Enter email",
+          },
+        },
+        phone: {
+          label: "Phone",
+          type: "text",
+          mainWidgetProps: {
+            valueLabel: "Phone",
+            valuePlaceholder: "Enter phone number",
+          },
+        },
+      },
+    },
+    business: {
+      label: "Business",
+      tooltip: "Group of fields",
+      type: "!struct",
+      subfields: {
+        name: {
+          label: "Name",
+          type: "text",
+          mainWidgetProps: {
+            valueLabel: "Name",
+            valuePlaceholder: "Enter business name",
+          },
+        },
+        url: {
+          label: "URL", //only for menu's toggler
+          type: "text",
+          mainWidgetProps: {
+            valueLabel: "URL",
+            valuePlaceholder: "Enter business URL",
+          },
+        },
+        country: {
+          label: "Country",
+          type: "select",
+          valueSources: ["value"],
+          fieldSettings: {
+            showSearch: true,
+            listValues: [
+              { value: "US", title: "USA" },
+              { value: "CN", title: "Canada" },
+              { value: "UK", title: "United Kingdom" },
+            ],
+          },
+        },
+        type: {
+          label: "Type",
+          type: "select",
+          valueSources: ["value"],
+          fieldSettings: {
+            showSearch: true,
+            listValues: [
+              { value: "individual", title: "Individual" },
+              { value: "company", title: "Company" },
+              { value: "non_profit", title: "Non-profit" },
+            ],
+          },
+        },
+        mcc: {
+          label: "MCC",
+          type: "select",
+          valueSources: ["value"],
+          fieldSettings: {
+            showSearch: true,
+            listValues: [
+              { value: "software", title: "Software" },
+              { value: "clothing", title: "Clothing" },
+              { value: "industrial_supplies", title: "Industrial Supplies" },
+              { value: "digital_goods", title: "Digital Goods" },
+            ],
+          },
+        },
+        annual_revenue: {
+          label: "Annual Revenue",
+          type: "select",
+          valueSources: ["value"],
+          fieldSettings: {
+            showSearch: true,
+            listValues: [
+              { value: "less_than_250k", title: "Less than $250k" },
+              { value: "250k_1m", title: "$250k to $1m" },
+              { value: "1m_20m", title: "$1m to $20m" },
+              { value: "20m_100m", title: "$20m to $100m" },
+              { value: "more_than_100m", title: "More than $100m" },
+              { value: "not_sure", title: "Not sure" },
+            ],
+          },
+        },
+        go_live_timeframe: {
+          label: "Go live",
+          type: "select",
+          valueSources: ["value"],
+          fieldSettings: {
+            showSearch: true,
+            listValues: [
+              { value: "within_5days", title: "Within 5 days" },
+              { value: "within_1month", title: "Within 1 month" },
+              { value: "1_3months", title: "1-3 months" },
+              { value: "3_6months", title: "3-6 months" },
+              { value: "more_than_6months", title: "More than 6 months" },
+              { value: "just_testing", title: "Just testing" },
+            ],
+          },
+        },
+      },
+    },
     user: {
       label: "User",
       tooltip: "Group of fields",
@@ -284,7 +422,7 @@ export default (skin: string) => {
           type: "text",
           fieldSettings: {
             validateValue: (val: string, fieldSettings) => {
-              return (val.length < 10);
+              return val.length < 10;
             },
           },
           mainWidgetProps: {
@@ -297,15 +435,18 @@ export default (skin: string) => {
           tableName: "t1", // legacy: PR #18, PR #20
           fieldSettings: {
             validateValue: (val: string, fieldSettings) => {
-              return (val.length < 10 && (val === "" || val.match(/^[A-Za-z0-9_-]+$/) !== null));
+              return (
+                val.length < 10 &&
+                (val === "" || val.match(/^[A-Za-z0-9_-]+$/) !== null)
+              );
             },
           },
           mainWidgetProps: {
             valueLabel: "Login",
             valuePlaceholder: "Enter login",
           },
-        }
-      }
+        },
+      },
     },
     bio: {
       label: "Bio",
@@ -313,7 +454,7 @@ export default (skin: string) => {
       preferWidgets: ["textarea"],
       fieldSettings: {
         maxLength: 1000,
-      }
+      },
     },
     results: {
       label: "Results",
@@ -333,8 +474,8 @@ export default (skin: string) => {
             max: 100,
           },
           valueSources: ["value"],
-        }
-      }
+        },
+      },
     },
     cars: {
       label: "Cars",
@@ -376,8 +517,8 @@ export default (skin: string) => {
             max: 2021,
           },
           valueSources: ["value"],
-        }
-      }
+        },
+      },
     },
     prox1: {
       label: "prox",
@@ -391,7 +532,7 @@ export default (skin: string) => {
       preferWidgets: ["number"],
       fieldSettings: {
         min: -1,
-        max: 5
+        max: 5,
       },
       funcs: ["LINEAR_REGRESSION"],
     },
@@ -406,10 +547,10 @@ export default (skin: string) => {
         step: 1,
         marks: {
           0: <strong>0%</strong>,
-          100: <strong>100%</strong>
+          100: <strong>100%</strong>,
         },
         validateValue: (val, fieldSettings) => {
-          return (val < 50 ? null : "Invalid slider value, see validateValue()");
+          return val < 50 ? null : "Invalid slider value, see validateValue()";
         },
       },
       //overrides
@@ -417,7 +558,7 @@ export default (skin: string) => {
         slider: {
           widgetProps: {
             valuePlaceholder: "..Slider",
-          }
+          },
         },
         rangeslider: {
           widgetProps: {
@@ -425,7 +566,7 @@ export default (skin: string) => {
               { label: "Number from", placeholder: "from" },
               { label: "Number to", placeholder: "to" },
             ],
-          }
+          },
         },
       },
     },
@@ -438,7 +579,9 @@ export default (skin: string) => {
         validateValue: (val: string, fieldSettings: DateTimeFieldSettings) => {
           // example of date validation
           const dateVal = moment(val, fieldSettings.valueFormat);
-          return dateVal.year() != (new Date().getFullYear()) ? "Please use current year" : null;
+          return dateVal.year() != new Date().getFullYear()
+            ? "Please use current year"
+            : null;
         },
       },
     },
@@ -451,12 +594,12 @@ export default (skin: string) => {
     datetime: {
       label: "DateTime",
       type: "datetime",
-      valueSources: ["value", "func"]
+      valueSources: ["value", "func"],
     },
     datetime2: {
       label: "DateTime2",
       type: "datetime",
-      valueSources: ["field"]
+      valueSources: ["field"],
     },
     color: {
       label: "Color",
@@ -474,7 +617,7 @@ export default (skin: string) => {
         listValues: [
           { value: "yellow", title: "Yellow" },
           { value: "green", title: "Green" },
-          { value: "orange", title: "Orange" }
+          { value: "orange", title: "Orange" },
         ],
       },
     },
@@ -486,9 +629,9 @@ export default (skin: string) => {
           yellow: "Yellow",
           green: "Green",
           orange: "Orange",
-          purple: "Purple"
+          purple: "Purple",
         },
-      }
+      },
     },
     multicolor: {
       label: "Colors",
@@ -498,10 +641,10 @@ export default (skin: string) => {
         listValues: {
           yellow: "Yellow",
           green: "Green",
-          orange: "Orange"
+          orange: "Orange",
         },
         allowCustomValues: true,
-      }
+      },
     },
     selecttree: {
       label: "Color (tree)",
@@ -534,7 +677,7 @@ export default (skin: string) => {
           { value: "7", title: "Sub blue", parent: "6" },
           { value: "8", title: "Sub sub blue and a long text", parent: "7" },
         ],
-      }
+      },
     },
     multiselecttree: {
       label: "Colors (tree)",
@@ -543,27 +686,35 @@ export default (skin: string) => {
         treeExpandAll: true,
         listValues: [
           {
-            value: "1", title: "Warm colors", children: [
+            value: "1",
+            title: "Warm colors",
+            children: [
               { value: "2", title: "Red" },
-              { value: "3", title: "Orange" }
-            ]
+              { value: "3", title: "Orange" },
+            ],
           },
           {
-            value: "4", title: "Cool colors", children: [
+            value: "4",
+            title: "Cool colors",
+            children: [
               { value: "5", title: "Green" },
               {
-                value: "6", title: "Blue", children: [
+                value: "6",
+                title: "Blue",
+                children: [
                   {
-                    value: "7", title: "Sub blue", children: [
-                      { value: "8", title: "Sub sub blue and a long text" }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    value: "7",
+                    title: "Sub blue",
+                    children: [
+                      { value: "8", title: "Sub sub blue and a long text" },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     },
     autocomplete: {
       label: "Autocomplete",
@@ -574,7 +725,7 @@ export default (skin: string) => {
         useAsyncSearch: true,
         useLoadMore: true,
         forceAsyncSearch: false,
-        allowCustomValues: false
+        allowCustomValues: false,
       },
     },
     autocompleteMultiple: {
@@ -586,7 +737,7 @@ export default (skin: string) => {
         useAsyncSearch: true,
         useLoadMore: true,
         forceAsyncSearch: false,
-        allowCustomValues: false
+        allowCustomValues: false,
       },
     },
     stock: {
@@ -595,17 +746,16 @@ export default (skin: string) => {
       defaultValue: true,
       mainWidgetProps: {
         labelYes: "+",
-        labelNo: "-"
-      }
+        labelNo: "-",
+      },
     },
   };
 
   //////////////////////////////////////////////////////////////////////
 
   const funcs: Funcs = {
-    ...BasicFuncs
+    ...BasicFuncs,
   };
-
 
   const config: Config = {
     conjunctions,
