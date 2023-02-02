@@ -346,7 +346,7 @@ export default (skin: string) => {
             showSearch: true,
             listValues: [
               { value: "US", title: "USA" },
-              { value: "CN", title: "Canada" },
+              { value: "CA", title: "Canada" },
               { value: "UK", title: "United Kingdom" },
             ],
           },
