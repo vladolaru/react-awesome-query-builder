@@ -1,107 +1,96 @@
-export default 
-{
-  "and": [
+export default {
+  and: [
     {
-      "==": [
+      in: [
         {
-          "var": "user.login"
+          var: "business.country",
         },
+        ["US", "CA"],
+      ],
+    },
+    {
+      in: [
         {
-          "toLowerCase": [
+          var: "business.type",
+        },
+        ["individual", "company"],
+      ],
+    },
+    {
+      in: [
+        {
+          var: "business.mcc",
+        },
+        ["software", "digital_goods"],
+      ],
+    },
+    {
+      in: [
+        {
+          var: "business.annual_revenue",
+        },
+        ["less_than_250k", "250k_1m"],
+      ],
+    },
+    {
+      in: [
+        {
+          var: "business.go_live_timeframe",
+        },
+        ["within_5days", "within_1month"],
+      ],
+    },
+    {
+      or: [
+        {
+          "==": [
             {
-              "var": "user.firstName"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "==": [
-        {
-          "var": "stock"
-        },
-        false
-      ]
-    },
-    {
-      "==": [
-        {
-          "var": "slider"
-        },
-        35
-      ]
-    },
-    {
-      "some": [
-        {
-          "var": "results"
+              var: "woo_stats.is_active",
+            },
+            false,
+          ],
         },
         {
-          "and": [
+          and: [
             {
-              "==": [
+              "!=": [
                 {
-                  "var": "product"
+                  var: "woo_stats.revenue.prev_30_days",
                 },
-                "abc"
-              ]
+                null,
+              ],
             },
             {
               ">": [
                 {
-                  "var": "score"
+                  var: "woo_stats.revenue.prev_30_days",
                 },
-                8
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      ">": [
-        {
-          "reduce": [
-            {
-              "filter": [
-                {
-                  "var": "cars"
-                },
-                {
-                  "and": [
-                    {
-                      "==": [
-                        {
-                          "var": "vendor"
-                        },
-                        "Toyota"
-                      ]
-                    },
-                    {
-                      ">=": [
-                        {
-                          "var": "year"
-                        },
-                        2010
-                      ]
-                    }
-                  ]
-                }
-              ]
+                1000,
+              ],
             },
-            {
-              "+": [
-                1,
-                {
-                  "var": "accumulator"
-                }
-              ]
-            },
-            0
-          ]
+          ],
         },
-        2
-      ]
-    }
-  ]
+        {
+          and: [
+            {
+              "!=": [
+                {
+                  var: "woo_stats.revenue.prev_60_days",
+                },
+                null,
+              ],
+            },
+            {
+              ">": [
+                {
+                  var: "woo_stats.revenue.prev_60_days",
+                },
+                3000,
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
